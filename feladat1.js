@@ -41,6 +41,15 @@ function MinAuto(autok) {
     }
     return min;
 }
+function MaxAuto(autok) {
+    var max = autok[0];
+    for (var i = 0; i < autok.length; i++) {
+        if (autok[i].hengerurtartalom > max.hengerurtartalom) {
+            max = autok[i];
+        }
+    }
+    return max;
+}
 function BenzinesDb(autok) {
     var db = 0;
     for (var i = 0; i < autok.length; i++) {
@@ -116,3 +125,29 @@ function Szetvalogatas(autok) {
 console.log(AtlagHengerurtartalom(autok));
 console.log(VanENemBenzines(autok));
 console.log(Szetvalogatas(autok));
+/*-Keszits alprogramot ,ami...
+     -Visszaadja egy auto tombbol a legnagyobb hengerurtartalmu auto gyartojat
+     -Visszaadja egy auto tombbol azokat az autokat ,amiknek hengerurtartalma egesz szam
+     -Visszaadja egy auto tombbol a legkisebb hengerurtartalmu autot
+     -Visszaadja a legkisebb hengerurtartalmu auto gyartojat es tipusat
+ */
+function MaxAutoGyarto(autok) {
+    var maxauto = MaxAuto(autok);
+    return maxauto.gyarto;
+}
+function EgeszSzamHengerurtartalom(autok) {
+    var egeszCcmAutok = [];
+    for (var i = 0; i < autok.length; i++) {
+        if (autok[i].hengerurtartalom % 1 == 0) {
+            egeszCcmAutok.push(autok[i]);
+        }
+    }
+    return egeszCcmAutok;
+}
+function LegkisebbHengerurtartalmuGyartoEsTipus(autok) {
+    var minAuto = MinAuto(autok);
+    return [minAuto.gyarto, minAuto.tipus];
+}
+console.log(MaxAutoGyarto(autok));
+console.log(EgeszSzamHengerurtartalom(autok));
+console.log(LegkisebbHengerurtartalmuGyartoEsTipus(autok));
